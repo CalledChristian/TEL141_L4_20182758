@@ -62,8 +62,20 @@ sudo ovs-vsctl set port "$TAP_NAME" tag="$VLAN_ID"
 echo "TAP $TAP_NAME conectado a $OVS_NAME."
 echo "VLAN configurada: $VLAN_ID"
 
-# Generamos una MAC basada en VLAN (en este caso, al inicio uso mi código PUCP)
-MAC="20:18:27:58:$(printf '%02x' "$VLAN_ID"):00"
+# Generamos una MAC basada en VLAN (en este caso, uso mi código PUCP : 20182758 , al inicio de la MAC)
+# Manteniendo el esquema de MAC utilizado en el Lab 3:
+#   VM VLAN 100 -> 20:18:27:58:01:00
+#   VM VLAN 200 -> 20:18:27:58:02:00
+case "$VLAN_ID" in
+    100) MAC_VLAN="01" ;;
+    200) MAC_VLAN="02" ;;
+    *)
+        echo "Error: VLAN $VLAN_ID no soportada para la MAC de esta práctica"
+        exit 1
+        ;;
+esac
+
+MAC="20:18:27:58:${MAC_VLAN}:00"
 
 # Iniciamos la VM con QEMU - KVM
 sudo qemu-system-x86_64 \
