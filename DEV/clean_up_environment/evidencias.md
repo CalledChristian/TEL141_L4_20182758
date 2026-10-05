@@ -76,9 +76,31 @@ Ejecutamos el script:
 ./clean_up_environment.sh
 ```
 
-![Ejecución de cleanup_environment.sh](images/04_cleanup_execution.png)
+![Ejecución de cleanup_environment.sh](imagenes/ejecucion_clean_up_environment.PNG)
 
-El script realiza la limpieza de los componentes (contenedores, VMs, enlaces veth , interfaces TAP , bridges OVS , namespaces , servidores DHCP, reglas IP Tables, etc) presentes en los Server1, Server2 y Server3 , que en conjunto formaban la topologia o slice desplegado en el laboratorio 3.
+### Limpieza Server1:
+
+![Ejecución de cleanup_environment.sh](imagenes/ejecucion_clean_up_environment_server1.1.PNG)
+
+![Ejecución de cleanup_environment.sh](imagenes/ejecucion_clean_up_environment_server1.2.PNG)
+
+### Limpieza Server2:
+
+![Ejecución de cleanup_environment.sh](imagenes/ejecucion_clean_up_environment_server2.1.PNG)
+
+![Ejecución de cleanup_environment.sh](imagenes/ejecucion_clean_up_environment_server2.2.PNG)
+
+### Limpieza Server3:
+
+![Ejecución de cleanup_environment.sh](imagenes/ejecucion_clean_up_environment_server3.1.PNG)
+
+![Ejecución de cleanup_environment.sh](imagenes/ejecucion_clean_up_environment_server3.2.PNG)
+
+### Limpieza Completada:
+
+![Ejecución de cleanup_environment.sh](imagenes/ejecucion_clean_up_environment_completed.PNG)
+
+El script realizó la limpieza de los componentes (contenedores, VMs, enlaces veth , interfaces TAP , bridges OVS , namespaces , servidores DHCP, reglas IP Tables, etc) presentes en los Server1, Server2 y Server3 , que en conjunto formaban la topologia o slice desplegado en el laboratorio 3. (validando también si estos aún existían o No , al momento de eliminarlos)
 
 ---
 
@@ -86,7 +108,7 @@ El script realiza la limpieza de los componentes (contenedores, VMs, enlaces vet
 
 Una vez finalizada la limpieza el entorno, comprobamos que los componentes , enlaces, bridges ovs , etc de la topología anterior hayan sido eliminados.
 
-Nuevamente ejecutamos en los servers:
+Nuevamente ejecutamos los siguientes comandos en los servers:
 
 ### Server1
 
@@ -96,7 +118,7 @@ docker ps
 ip -br link
 ```
 
-![Estado final de Server1](images/05_server1_after.png)
+![Estado Final de Server1](imagenes/estado_final_server1.PNG)
 
 ### Server2
 
@@ -106,7 +128,7 @@ pgrep -af qemu
 ip -br link
 ```
 
-![Estado final de Server2](images/06_server2_after.png)
+![Estado Final de Server1](imagenes/estado_final_server2.PNG)
 
 ### Server3
 
@@ -118,18 +140,18 @@ sudo iptables -L -n -v
 sudo iptables -t nat -L -n -v
 ```
 
-![Estado final de Server3](images/07_server3_after.png)
+![Estado Final de Server1](imagenes/estado_final_server3.PNG)
 
 ---
 
 ## 4. Resultado
 
-Después de ejecutar el script `clean_up_environment.sh`, los componentes desplegados en la topologia del Laboratorio 3 fueron eliminados y los servidores quedaron limpios y preparados para iniciar el despliegue automatizado desde **Server4** de las topologías solicitadas en este Laboratorio 4.
+Después de haber ejecutado el script `clean_up_environment.sh`, los componentes desplegados en la topologia del Laboratorio 3 fueron eliminados y los servidores quedaron limpios y preparados para iniciar el despliegue automatizado desde **Server4** de las topologías solicitadas en este Laboratorio 4.
 
 En particular, se verificó que:
 
 - Las VMs y sus interfaces TAP del laboratorio anterior hayan sido eliminadas.
-- Los contenedores asociados a las VLAN hayan sido eliminados.
+- Los contenedores asociados a las VLAN hayan sido eliminados o verificando si aún existían.
 - Los namespaces DHCP anteriores hayan sido eliminados.
 - Los bridges y puertos OVS creados para la topología anterior hayan sido eliminados.
 - Las reglas específicas de `iptables` hayan sido limpiadas.
