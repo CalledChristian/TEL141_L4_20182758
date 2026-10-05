@@ -28,7 +28,7 @@ docker ps
 ip -br link
 ```
 
-![Estado inicial de Server1](images/01_server1_before.png)
+![Estado inicial de Server1](imagenes/estado_inicial_server1.png)
 
 ### Server2:
 
@@ -38,7 +38,7 @@ pgrep -af qemu
 ip -br link
 ```
 
-![Estado inicial de Server2](images/02_server2_before.png)
+![Estado inicial de Server2](imagenes/estado_inicial_server2.png)
 
 ### Server3:
 
@@ -50,7 +50,9 @@ sudo iptables -L -n -v
 sudo iptables -t nat -L -n -v
 ```
 
-![Estado inicial de Server3](images/03_server3_before.png)
+![Estado inicial de Server3](imagenes/estado_inicial_server3.1.png)
+
+![Estado inicial de Server3](imagenes/estado_inicial_server3.2.png)
 
 ---
 

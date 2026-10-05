@@ -43,7 +43,7 @@ run_remote()
     echo "============================================================"
 
     #NOTA: SSH PASSWORDLESS CONFIGURADO PREVIAMENTE DESDE SERVER 4 A LOS SERVERS 1, 2 y 3
-    ssh "$SSH_USER@$SERVER" 'bash -s' <<< "$SCRIPT"
+    ssh "$SSH_USER@$SERVER" 'sudo -n bash -s' <<< "$SCRIPT"
 
     if [ $? -ne 0 ]; then
         echo ""
